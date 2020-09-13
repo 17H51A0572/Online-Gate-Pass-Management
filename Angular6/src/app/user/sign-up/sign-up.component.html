@@ -1,0 +1,79 @@
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+
+<div>
+  <img src="/assets/img/users.png" id="icon" alt="User Icon" />
+</div>
+<form #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
+  <input type="text" #fullName="ngModel" [(ngModel)]="userService.selectedUser.fullName" name="fullName" placeholder="Full Name"
+  required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !fullName.valid }">
+  <div *ngIf="signUpForm.submitted && !fullName.valid">
+    <label class="validation-message">This field is required.</label>
+  </div>
+  <input type="text" #email="ngModel" [(ngModel)]="userService.selectedUser.email" name="email" placeholder="Email"
+  required [pattern]="emailRegex"  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !email.valid }">
+  <div *ngIf="signUpForm.submitted && email.errors">
+    <label *ngIf="email.errors.required" class="validation-message">This field is required.</label>
+    <label *ngIf="email.errors.pattern" class="validation-message">Invalid email address.</label>
+  </div>
+
+  <!-- <div>
+  <label id="example-radio-group-label">Pick your Role</label>
+  <br>
+  <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="favoriteSeason">
+    <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+      {{season}}<br>
+    </mat-radio-button>
+  </mat-radio-group>
+  <div>Your favorite season is: {{favoriteSeason}}</div>
+  </div> -->
+  <!-- <p id="example-radio-group-label">Pick your Role</p> -->
+ <!-- <mat-radio-group labelPosition="after" [(ngModel)]="favoriteSeason">
+   <mat-radio-button value="1" name="option1">Option 1</mat-radio-button>
+   <mat-radio-button value="1" name="option2">Option 2</mat-radio-button>
+ </mat-radio-group> -->
+
+ <!-- <div>
+  <input type="radio" #role="ngModel" [(ngModel)]="userService.selectedUser.role" name="role" id="admin" value="admin">
+  Admin
+  </div>
+  <div>
+    <input type="radio" #role="ngModel" [(ngModel)]="userService.selectedUser.role" name="role" id="student" value="student">
+    Student
+  </div> -->
+
+ <!-- <div *ngIf="!role && signUpForm.submitted"> 
+  <label class="validation-message">Choose one role</label>
+ </div> -->
+
+ <!-- <div *ngIf="signUpForm.submitted && !role.valid">
+  <label class="validation-message">Choose a role.</label>
+</div> -->
+
+  <input type="password" #password="ngModel" [(ngModel)]="userService.selectedUser.password" name="password" placeholder="Password"
+  minlength="4" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !password.valid }">
+  <div *ngIf="signUpForm.submitted && password.errors">
+    <label *ngIf="password.errors.required" class="validation-message">This field is required.</label>
+    <label *ngIf="password.errors.minlength" class="validation-message">Enter atleast 4 characters.</label>
+  </div>
+  <input type="submit" value="Sign Up">
+</form>
+
+<!-- Success message -->
+<div class="success" *ngIf="showSucessMessage">
+  Saved successfully
+</div>
+
+<!-- Error message -->
+<div class="alert" *ngIf="serverErrorMessages">
+  {{serverErrorMessages}}
+</div>
+
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+
+<!-- var gender_check = $('input:radio[name=gender]:checked').val();
+if ( !gender_check ) {
+    alert("Please select your gender.");
+    return false;
+}   -->

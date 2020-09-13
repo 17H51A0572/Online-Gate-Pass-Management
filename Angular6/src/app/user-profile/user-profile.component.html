@@ -1,0 +1,102 @@
+<!-- <table *ngIf="userDetails" class="table-fill">
+  <thead>
+      <tr>
+          <th colspan="2" class="text-center">User Profile</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>First Name</td>
+          <td>{{userDetails.fullName.split(' ')[0]}}</td>
+      </tr>
+      <tr>
+          <td>Last Name</td>
+          <td>{{userDetails.fullName.split(' ')[1]}}</td>
+      </tr>
+      <tr>
+          <td>Email</td>
+          <td>{{userDetails.email}}</td>
+      </tr>
+      <tr>
+        <td>Role</td>
+        <td>{{userDetails.role}}</td>
+      </tr> -->
+      <div class="bdy">
+      <h1>Welcome {{userDetails.fullName.split(' ')[0]}} {{userDetails.fullName.split(' ')[1]}}</h1>
+      <h3>Email : {{userDetails.email}}</h3>
+      <h3>Role : {{userDetails.role}}</h3>
+      <div *ngIf="userDetails.role=='admin'">
+          <input type="button" (click)="getAllStudentsDetails()" value="Get all students"/>
+          <table>
+                  <tr>
+                      <th>Students and their Email Id</th>
+                      <!-- <td>Sl.No</td>
+                      <td>Name</td>
+                      <td>Email</td> -->
+                  </tr>
+                  <div *ngFor="let data of allusers; let i=index">
+                          <p style="font-size: larger; font-weight: 600;">{{i+1}} - {{data.fullName}} - {{data.email}}</p>
+                          <!-- <tr>
+                          <td>{{i+1}}</td>
+                          <td>{{data.fullName}}</td>
+                          <td>{{data.email}}</td>
+                          </tr> -->
+                    </div>
+            </table>
+      </div>
+    <!-- <div *ngIf="userDetails.role=='student'; then thenBlock else elseBlock"></div>
+    <ng-template #thenBlock>I am a student.</ng-template>
+    <ng-template #elseBlock>I am an admin.</ng-template> -->
+    <!-- <tr *ngIf="studentLeaves">
+        <h3>Your Leaves:</h3>
+        <div *ngFor="let lv of studentLeaves">
+            <p>{{lv.reason}}<span>--{{lv.permission}}</span></p>
+            <p>{{lv.createdAt | date:'medium'}}</p>
+        </div>
+    </tr> -->
+    <!-- <tr>
+        <td>Your Recorded Leaves</td>
+    </tr> -->
+  <!-- </tbody>
+</table> -->
+
+<table *ngIf="userDetails" class="table-fill">
+    <tbody>
+        <tr *ngIf="userDetails.role=='student'">
+            <td class="text-center" style="text-decoration: underline;">Your Recorded Leaves</td>
+        </tr>
+    <div *ngIf="studentLeaves.length; then thenBlock else elseBlock"></div>
+    <ng-template #thenBlock>
+        <div *ngFor="let lv of studentLeaves; let i=index">
+            <p>{{i+1}} - {{lv.reason}} --
+                <span>
+                    <div *ngIf="lv.permission; then thenBlock1 else elseBlock1"></div>
+                    <ng-template #thenBlock1>
+                        <button type="button" class="button">Leave Permitted</button>
+                    </ng-template>
+                    <ng-template #elseBlock1>
+                        <button type="button" class="button button3">Leave not permitted</button>
+                    </ng-template>
+                </span>
+            </p>
+            <p>{{lv.createdAt | date:'medium'}}</p>
+        </div>
+    </ng-template>
+    <ng-template #elseBlock>
+        <h3  *ngIf="userDetails.role=='student'" >You have no leaves yet!!!</h3>
+    </ng-template>
+    <tr *ngIf="userDetails.role=='student'">
+        <td>Enter your leave permission</td>
+    </tr>
+    <input  *ngIf="userDetails.role=='student'" type="text" placeholder="type your reasons for leave" #leavenote="ngModel" [(ngModel)]="note" id="issue">
+        <button (click)="postLeave()"  *ngIf="userDetails.role=='student'"><mat-icon>send</mat-icon></button>
+<!--  <tr>
+          <td colspan="2" class="text-center">
+              <input type="button" (click)="onLogout()" value="Logout" />
+          </td>
+      </tr> -->
+  </tbody>
+</table>
+<input type="button" (click)="onLogout()" value="Logout" />
+</div>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
