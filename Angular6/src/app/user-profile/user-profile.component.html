@@ -29,18 +29,52 @@
           <input type="button" (click)="getAllStudentsDetails()" value="Get all students"/>
           <table>
                   <tr>
-                      <th>Students and their Email Id</th>
+                      <th>Students and Information</th>
                       <!-- <td>Sl.No</td>
                       <td>Name</td>
                       <td>Email</td> -->
                   </tr>
                   <div *ngFor="let data of allusers; let i=index">
-                          <p style="font-size: larger; font-weight: 600;">{{i+1}} - {{data.fullName}} - {{data.email}}</p>
+                          <p style="font-size: larger; font-weight: 600;">Student {{i+1}} : {{data.fullName}} --> {{data.email}} ( {{data.leaveRecords.length}} leaves )</p>
+                         <!-- <div *ngFor="let leave of data.leaveRecords; let j=index">
+                              <p>{{j+1}} - {{leave.reason}} -> {{leave.updatedAt | date:'medium'}} ->
+                                <span>
+                                    <div *ngIf="leave.permission; then thenBlock1 else elseBlock1"></div>
+                                    <ng-template #thenBlock1>
+                                        <button type="button" class="button">Leave Permitted</button>
+                                    </ng-template>
+                                    <ng-template #elseBlock1>
+                                        <button type="button" class="button button3">Leave not permitted</button>
+                                    </ng-template>
+                                </span>
+                              </p>
+                          </div> -->
+
+                         <table style="width: 100%;">
+                            <tr *ngFor="let leave of data.leaveRecords; let j=index">
+                              <td>{{ j+1 }}</td>  
+                              <td>{{ leave.reason }}</td>
+                              <td>{{ leave.updatedAt | date:'medium' }}</td>
+                              <td>
+                                <span>
+                                    <div *ngIf="leave.permission; then thenBlock1 else elseBlock1"></div>
+                                    <ng-template #thenBlock1>
+                                        <button type="button" (click)="changeStatus($event,data,leave,j)" class="button">Leave Permitted</button>
+                                    </ng-template>            
+                                    <ng-template #elseBlock1>
+                                        <button type="button" (click)="changeStatus($event,data,leave,j)" class="button button3">Leave not permitted</button>
+                                    </ng-template>
+                                </span>
+                              </td>
+                            </tr>
+                          </table> 
                           <!-- <tr>
                           <td>{{i+1}}</td>
                           <td>{{data.fullName}}</td>
                           <td>{{data.email}}</td>
                           </tr> -->
+
+                          <hr>
                     </div>
             </table>
       </div>
@@ -60,14 +94,14 @@
   <!-- </tbody>
 </table> -->
 
-<table *ngIf="userDetails" class="table-fill">
+<table *ngIf="userDetails">
     <tbody>
         <tr *ngIf="userDetails.role=='student'">
-            <td class="text-center" style="text-decoration: underline;">Your Recorded Leaves</td>
+            <td class="text-center" style="text-decoration: underline;color: #000;"><b>Your Recorded Leaves ( {{studentLeaves.length}} leaves )</b></td>
         </tr>
     <div *ngIf="studentLeaves.length; then thenBlock else elseBlock"></div>
     <ng-template #thenBlock>
-        <div *ngFor="let lv of studentLeaves; let i=index">
+        <!-- <div *ngFor="let lv of studentLeaves; let i=index">
             <p>{{i+1}} - {{lv.reason}} --
                 <span>
                     <div *ngIf="lv.permission; then thenBlock1 else elseBlock1"></div>
@@ -80,7 +114,30 @@
                 </span>
             </p>
             <p>{{lv.createdAt | date:'medium'}}</p>
-        </div>
+        </div> -->
+
+
+        <table>
+            <tr *ngFor="let lv of studentLeaves; let i=index">
+              <td>{{ i+1 }}</td>  
+              <td>{{ lv.reason }}</td>
+              <td>{{ lv.updatedAt | date:'medium' }}</td>
+              <td>
+                <span>
+                    <div *ngIf="lv.permission; then thenBlock1 else elseBlock1"></div>
+                    <ng-template #thenBlock1>
+                        <button type="button" class="button">Leave Permitted</button>
+                    </ng-template>
+                    <ng-template #elseBlock1>
+                        <button type="button" class="button button3">Leave not permitted</button>
+                    </ng-template>
+                </span>
+              </td>
+            </tr>
+          </table> 
+
+
+
     </ng-template>
     <ng-template #elseBlock>
         <h3  *ngIf="userDetails.role=='student'" >You have no leaves yet!!!</h3>

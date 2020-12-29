@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatIconModule} from '@angular/material/icon';
+import {MatSlideToggle, MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatButtonModule, MatButtonToggleModule } from "@angular/material";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 // components
 import { AppComponent } from './app.component';
@@ -35,7 +37,10 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     HttpClientModule,
     MatRadioModule,
     BrowserAnimationsModule,
-    MatIconModule
+    MatIconModule,
+    MatSlideToggleModule,
+    MatButtonModule,
+    MatButtonToggleModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

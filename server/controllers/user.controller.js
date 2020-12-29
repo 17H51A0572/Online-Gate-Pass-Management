@@ -131,8 +131,9 @@ module.exports.postleave=async (req , res , next)=>{
         reason: req.body.msg,
         student: user._id,
     }
-    const userRecord = await User.findOneAndUpdate({ email: req.body.email }, { $push: { leaveRecords: leave }});
+    const userRecord = await User.findOneAndUpdate({ email: req.body.email }, { $push: { leaveRecords: leave }}, {new: true}).exec();
     console.log(userRecord);
+    res.status(200).send(userRecord);
 
 
     // User.findOne({email:req.body.email})
@@ -203,4 +204,73 @@ module.exports.postleave=async (req , res , next)=>{
         res.json(user);
     },(err)=>next(err))
     .catch((err)=>next(err));*/
+}
+
+module.exports.changeLeaveStatus =async (req,res,next)=>{
+    try {
+        // if(req.body.==true){
+            console.log(req.body.student);
+            console.log(req.body.leave.permission);
+            console.log(req.body.ind);
+            let tmp=req.body.ind;
+            const temp=req.body.student.leaveRecords[req.body.ind];
+            console.log(temp);
+            let permit=!req.body.leave.permission;
+            // if(req.body.leave.permission==false){
+            /* await User.update({ email: req.body.student.email },
+                                    { $set: { req.body.student.leaveRecords.tmp : true } })
+                                    .then((obj) => { 
+                                        console.log('Updated - ' + obj); 
+                                        res.redirect('orders') 
+                                        }) 
+                                        .catch((err) => {
+                                            console.log('Error: ' + err); 
+                                        }) */
+                                        // .then(doc => {
+                                        //     return(doc); // <-- returns a pending promise
+                                        // });
+                // console.log(chnge);
+
+
+
+                
+                const query = { email: req.body.student.email };
+                // Set some fields in that document
+                const update = {
+                $set: {
+                    'leaveRecords.$[req.body.ind].reason.content':"mm"
+                }
+                };
+                // Return the updated document instead of the original document
+                // const options = { returnNewDocument: true };
+                // return User.findOneAndUpdate(query, update, options)
+                //   .then(updatedDocument => {
+                //     if(updatedDocument) {
+                //       console.log(`Successfully updated document: ${updatedDocument}.`);
+                //     } else {
+                //       console.log("No document matches the provided query.");
+                //     }
+                //     return updatedDocument;
+                //   })
+                //   .catch(err => console.error(`Failed to find and update document: ${err}`));
+
+
+                let vl='leaveRecords.'+tmp+'.permission';
+                await User.updateOne(
+                    {email:req.body.student.email},
+                    // {$set:{"leaveRecords.tmp.permission":true}}
+                    {$set:{[`leaveRecords.${tmp}.permission`]:permit}}
+                )
+
+                
+                res.status(200).send({ message: "successful"});
+                console.log("yeyy");
+            // } 
+        // else{
+            // console.log("nnoo");
+        // }
+    }
+    catch(err) {
+        res.status(500).send({error: "Internal Server Error" });
+    }
 }

@@ -11,6 +11,7 @@ router.get('/userProfile',jwtHelper.verifyJwtToken, ctrlUser.userProfile);
 router.get('/getStudent',ctrlUser.getStudents);
 // router.post('/postleave',ctrlUser.postleave);
 router.post('/postleave',ctrlUser.postleave);
+router.post('/changeLeaveStatus',ctrlUser.changeLeaveStatus);
 router.get('/leaveRecordOfStudent',jwtHelper.verifyJwtToken,ctrlUser.getLeaves);
 router.get('/getAllStudentsLeaveRecords',jwtHelper.verifyJwtToken,ctrlUser.getAllStudentsLeaveRecords);
 

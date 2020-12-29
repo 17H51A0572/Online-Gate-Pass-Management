@@ -50,6 +50,11 @@ export class UserService {
     return this.http.post(environment.apiBaseUrl+'/postleave',userr,this.noAuthHeader);
   }
 
+  changeLeaveStatus(student:any,leave:any,ind:Int16Array){
+    console.log("changing\n");
+    return this.http.post(environment.apiBaseUrl+'/changeLeaveStatus',{student,leave,ind},this.noAuthHeader);
+  }
+
   getStudentLeaveRecord(){
     return this.http.get(environment.apiBaseUrl+'/leaveRecordOfStudent');
   }

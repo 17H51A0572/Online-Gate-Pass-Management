@@ -4,6 +4,8 @@ import { Router } from "@angular/router";
 import { Subject } from 'rxjs';
 import {MatIconModule} from '@angular/material/icon';
 import { User } from '../shared/user.model';
+import {MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatButtonModule, MatButtonToggleModule } from "@angular/material";
 // var allusers=require('../../../../server/models/user.model');
 
 @Component({
@@ -75,6 +77,8 @@ export class UserProfileComponent implements OnInit {
     this.userService.postYourLeave(this.userDetails,msg).subscribe(
       res=>{
         console.log("succc");
+        console.log(res['leaveRecords'])
+        this.studentLeaves = res['leaveRecords'];
       },
       err=>{
         console.log(err);
@@ -83,6 +87,31 @@ export class UserProfileComponent implements OnInit {
     // console.log(msg);
     alert("Your leave is posted to the Department");
     (document.getElementById("issue") as HTMLInputElement).value="";
+  }
+
+  changeStatus(event,student,leave,ind){
+    console.log(student.fullName+"--"+leave.reason+"--"+leave.permission);
+    
+
+    this.userService.changeLeaveStatus(student,leave,ind).subscribe(
+      res=>{
+        console.log("succc", res);
+        if(leave.permission==true){
+          // console.log("yes"+ind);
+          student.leaveRecords[ind].permission=false;
+          console.log("changed to false");
+        }
+        else{
+          // console.log("no"+ind);
+          student.leaveRecords[ind].permission=true;
+          console.log("changed to true");
+        }
+      },
+      err=>{
+        console.log('érror',err);
+      }
+    );
+
   }
 
 }
