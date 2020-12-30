@@ -2,16 +2,20 @@
     "name": "project",
     "version": "1.0.0",
     "description": "",
-    "main": "app.js",
+    "main": "./server/app.js",
     "private": true,
     "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1",
-      "start": "node app",
+      "start": "node ./server/app.js",
       "ng": "ng",
       "build": "ng build",
       "lint": "ng lint",
       "e2e": "ng e2e"
     },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/17H51A0572/Online-Gate-Pass-Management"
+      },
     "author": "",
     "license": "ISC",
     "dependencies": {
