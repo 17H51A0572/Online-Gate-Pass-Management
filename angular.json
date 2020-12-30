@@ -30,8 +30,8 @@
               "production": {
                 "fileReplacements": [
                   {
-                    "replace": "src/environments/environment.ts",
-                    "with": "src/environments/environment.prod.ts"
+                    "replace": "./angular6/src/environments/environment.ts",
+                    "with": "./angular6/src/environments/environment.prod.ts"
                   }
                 ],
                 "optimization": true,
@@ -54,6 +54,9 @@
             "configurations": {
               "production": {
                 "browserTarget": "Angular6:build:production"
+              },
+              "development":{
+                "browserTarget": "Angular6:build:development"
               }
             }
           },
