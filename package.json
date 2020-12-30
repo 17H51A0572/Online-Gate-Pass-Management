@@ -5,8 +5,8 @@
     "main": "./server/app.js",
     "private": true,
     "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1",
-      "start": "node ./server/app.js",
+      "test": "ng test",
+      "start": "nodemon app.js",
       "ng": "ng",
       "build": "ng build",
       "lint": "ng lint",
