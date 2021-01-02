@@ -30,8 +30,8 @@
               "production": {
                 "fileReplacements": [
                   {
-                    "replace": "./angular6/src/environments/environment.ts",
-                    "with": "./angular6/src/environments/environment.prod.ts"
+                    "replace": "angular6/src/environments/environment.ts",
+                    "with": "angular6/src/environments/environment.prod.ts"
                   }
                 ],
                 "optimization": true,
