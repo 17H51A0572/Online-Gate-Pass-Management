@@ -1,0 +1,18 @@
+.marquee {
+    background-image: url('../../assets/img/coverimage.jpg');
+    -webkit-animation: marquee 4s infinite linear;
+    outline:1px solid blue;
+    background-position: center;
+    margin-top: 10px;
+    background-repeat: repeat-x;
+    background-size: 1400px;
+  }
+  @-webkit-keyframes marquee {
+    0% {
+      background-position: 0;
+    }
+  
+    100% {
+      background-position: -1190px;
+    }
+  }

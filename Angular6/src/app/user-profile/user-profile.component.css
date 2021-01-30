@@ -5,8 +5,11 @@
 }
 .bdy{
     background-color:rgba(251, 255, 255, 0.863);
+    /* background-image:url("../../assets/img/coverimage.jpg"); */
     padding-bottom: 150px;
     padding-left: 10%;
+    background-repeat: no-repeat;
+    position: relative;
 }
 .stutbl{
     margin-left: -10px;

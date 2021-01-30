@@ -23,6 +23,9 @@
       </tr> -->
       <div class="bdy">
       <h1>Welcome {{userDetails.fullName.split(' ')[0]}} {{userDetails.fullName.split(' ')[1]}}</h1>
+      <div style="height: 500px;">
+        <img src="../../assets/img/coverimage.jpg" alt="college-photo" height="500px">
+      </div>
       <h3>Email : {{userDetails.email}}</h3>
       <h3>Role : {{userDetails.role}}</h3>
       <div *ngIf="userDetails.role=='admin'">

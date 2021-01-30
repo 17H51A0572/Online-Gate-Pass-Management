@@ -13,16 +13,16 @@
             "builder": "@angular-devkit/build-angular:browser",
             "options": {
               "outputPath": "dist/Angular6",
-              "index": "src/index.html",
-              "main": "src/main.ts",
-              "polyfills": "src/polyfills.ts",
-              "tsConfig": "src/tsconfig.app.json",
+              "index": "angular6/src/index.html",
+              "main": "angular6/src/main.ts",
+              "polyfills": "angular6/src/polyfills.ts",
+              "tsConfig": "angular6/src/tsconfig.app.json",
               "assets": [
                 "src/favicon.ico",
                 "src/assets"
               ],
               "styles": [
-                "src/styles.css"
+                "angular6/src/styles.css"
               ],
               "scripts": []
             },
@@ -30,8 +30,8 @@
               "production": {
                 "fileReplacements": [
                   {
-                    "replace": "src/environments/environment.ts",
-                    "with": "src/environments/environment.prod.ts"
+                    "replace": "angular6/src/environments/environment.ts",
+                    "with": "angular6/src/environments/environment.prod.ts"
                   }
                 ],
                 "optimization": true,
@@ -69,10 +69,10 @@
           "test": {
             "builder": "@angular-devkit/build-angular:karma",
             "options": {
-              "main": "src/test.ts",
-              "polyfills": "src/polyfills.ts",
-              "tsConfig": "src/tsconfig.spec.json",
-              "karmaConfig": "src/karma.conf.js",
+              "main": "angular6/src/test.ts",
+              "polyfills": "angular6/src/polyfills.ts",
+              "tsConfig": "angular6/src/tsconfig.spec.json",
+              "karmaConfig": "angular6/src/karma.conf.js",
               "styles": [
                 "styles.css"
               ],
@@ -87,8 +87,8 @@
             "builder": "@angular-devkit/build-angular:tslint",
             "options": {
               "tsConfig": [
-                "src/tsconfig.app.json",
-                "src/tsconfig.spec.json"
+                "angular6/src/tsconfig.app.json",
+                "angular6/src/tsconfig.spec.json"
               ],
               "exclude": [
                 "**/node_modules/**"
